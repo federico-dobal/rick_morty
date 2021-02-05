@@ -1,0 +1,37 @@
+<h1>Rick and Morty search page</h1>
+
+ <body>
+    <h1>Search Result</h1>
+
+    <form action="{% url 'search_result' %}" method="get">
+      <input name="query" type="text" placeholder="Search here.." >
+      <button type="submit" name="button">Submit</button>
+    </form>
+
+    {% if not products.status %}
+      <h1>Not found</h1>
+    {% endif %}
+
+    <ul>
+        {% for product in products %}
+
+        <article>
+          <div>
+            <div class="section">
+                <a href={{ product.image }} rel="nofollow noopener noreferrer" target="_blank">
+                  <h2>{{ product.name }}</h2>
+                </a>
+            </div>
+          </div>
+          <div>
+            <img src={{ product.image }} alt={{ product.name }}>
+          </div>
+
+        </article>
+
+
+        {% endfor %}
+    </ul>
+
+
+  </body>
