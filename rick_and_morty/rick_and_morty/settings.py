@@ -51,6 +51,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+STATICFILES_DIRS = ['search/js']
+
 ROOT_URLCONF = 'rick_and_morty.urls'
 
 TEMPLATES = [

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Autocomplete - Default functionality</title>
+  <title>Rick and Morty characters search engine</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -24,92 +24,44 @@
  }
  </style>
 
+ {% load static %}
+ <script type="text/javascript" src="{% static 'functions.js' %}"></script>
+
+
   <script>
   $( function() {
+    let products = [];
     var availableTags = [
     {% for product in products %}
     "{{ product.name }}",
     {% endfor %}
     ];
+
+    {% for product in products %}
+    products.push({'name': "{{ product.name }}",
+                   'image': "{{ product.image }}"  });
+    {% endfor %}
+
     $( "#search_query" ).autocomplete({
       scroll: true,
       source: availableTags,
       matchContains: true,
       select: function (e, ui) {
-            myFunction(ui.item.value);
+            myFunction(ui.item.value, products );
         },
     });
   } );
   </script>
+
 </head>
 
-<script>
-  function myFunction(value) {
+<body onload="myFunction(this.value, {{ products }})">
 
-    console.log('update', value);
+  <form action="{% url 'search_result' %}" method="get">
+    <input name="query" type="text" id="search_query" placeholder="Search here.." oninput="myFunction(this.value, {{ products }})" onclick="myFunction(this.value, {{ products }})">
+  </form>
 
-    let html = '<ul><h1>Search Results</h1>';
+  <div id='proposed_results'>
+  </div>
 
-    {% for product in products %}
-
-    if ("{{ product.name }}".toLowerCase().indexOf(value.toLowerCase()) !== -1) {
-
-      html += '<article>';
-        html += '<div>'
-          html += '<div class="section">'
-              html += '<a href="{{ product.image }}" rel="nofollow noopener noreferrer" target="_blank">'
-                html += '<h2>{{ product.name }}</h2>'
-              html += '</a>'
-          html += '</div>'
-        html += '</div>'
-        html += '<div>'
-          html += '<img src="{{ product.image }}" alt="{{ product.name }}">'
-        html += '</div>'
-
-      html += '</article>'
-
-    }
-    {% endfor %}
-
-    html += '</ul>'
-
-    document.getElementById("proposed_results").innerHTML =  html;
-  }
-</script>
-
- <body>
-    <form action="{% url 'search_result' %}" method="get">
-      <input name="query" type="text" id="search_query" placeholder="Search here.." oninput="myFunction(this.value)" onclick="myFunction(this.value)">
-      <button type="submit" name="button">Submit</button>
-    </form>
-
-    <div id='proposed_results'">
-
-
-
-      <ul>
-        <h1>Search Results</h1>
-
-          {% for product in products %}
-
-          <article>
-            <div>
-              <div class="section">
-                  <a href="{{ product.image }} rel="nofollow noopener noreferrer" target="_blank">
-                    <h2>{{ product.name }}</h2>
-                  </a>
-              </div>
-            </div>
-            <div>
-              <img src={{ product.image }} alt={{ product.name }}>
-            </div>
-
-          </article>
-
-
-          {% endfor %}
-      </ul>
-    </div>
-
-
-  </body>
+</body>
