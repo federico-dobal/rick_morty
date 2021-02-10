@@ -1,37 +1,115 @@
 <h1>Rick and Morty search page</h1>
 
- <body>
-    <h1>Search Result</h1>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+  <style>
+ .ui-autocomplete {
+   max-height: 100px;
+   overflow-y: auto;
+   /* prevent horizontal scrollbar */
+   overflow-x: hidden;
+ }
+ /* IE 6 doesn't support max-height
+  * we use height instead, but this forces the menu to always be this tall
+  */
+ * html .ui-autocomplete {
+   height: 200px;
+ }
+ </style>
+
+  <script>
+  $( function() {
+    var availableTags = [
+    {% for product in products %}
+    "{{ product.name }}",
+    {% endfor %}
+    ];
+    $( "#search_query" ).autocomplete({
+      scroll: true,
+      source: availableTags,
+      matchContains: true,
+      select: function (e, ui) {
+            myFunction(ui.item.value);
+        },
+    });
+  } );
+  </script>
+</head>
+
+<script>
+  function myFunction(value) {
+
+    console.log('update', value);
+
+    let html = '<ul><h1>Search Results</h1>';
+
+    {% for product in products %}
+
+    if ("{{ product.name }}".toLowerCase().indexOf(value.toLowerCase()) !== -1) {
+
+      html += '<article>';
+        html += '<div>'
+          html += '<div class="section">'
+              html += '<a href="{{ product.image }}" rel="nofollow noopener noreferrer" target="_blank">'
+                html += '<h2>{{ product.name }}</h2>'
+              html += '</a>'
+          html += '</div>'
+        html += '</div>'
+        html += '<div>'
+          html += '<img src="{{ product.image }}" alt="{{ product.name }}">'
+        html += '</div>'
+
+      html += '</article>'
+
+    }
+    {% endfor %}
+
+    html += '</ul>'
+
+    document.getElementById("proposed_results").innerHTML =  html;
+  }
+</script>
+
+ <body>
     <form action="{% url 'search_result' %}" method="get">
-      <input name="query" type="text" placeholder="Search here.." >
+      <input name="query" type="text" id="search_query" placeholder="Search here.." oninput="myFunction(this.value)" onclick="myFunction(this.value)">
       <button type="submit" name="button">Submit</button>
     </form>
 
-    {% if not products.status %}
-      <h1>Not found</h1>
-    {% endif %}
+    <div id='proposed_results'">
 
-    <ul>
-        {% for product in products %}
 
-        <article>
-          <div>
-            <div class="section">
-                <a href={{ product.image }} rel="nofollow noopener noreferrer" target="_blank">
-                  <h2>{{ product.name }}</h2>
-                </a>
+
+      <ul>
+        <h1>Search Results</h1>
+
+          {% for product in products %}
+
+          <article>
+            <div>
+              <div class="section">
+                  <a href="{{ product.image }} rel="nofollow noopener noreferrer" target="_blank">
+                    <h2>{{ product.name }}</h2>
+                  </a>
+              </div>
             </div>
-          </div>
-          <div>
-            <img src={{ product.image }} alt={{ product.name }}>
-          </div>
+            <div>
+              <img src={{ product.image }} alt={{ product.name }}>
+            </div>
 
-        </article>
+          </article>
 
 
-        {% endfor %}
-    </ul>
+          {% endfor %}
+      </ul>
+    </div>
 
 
   </body>
