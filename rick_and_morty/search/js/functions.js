@@ -1,4 +1,7 @@
-function myFunction(value, products) {
+/**
+  Update search results based on the value on the search box by filtering the products
+*/
+function update_search_results_div(value, products) {
 
   console.log('update', value);
 
