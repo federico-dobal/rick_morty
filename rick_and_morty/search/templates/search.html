@@ -48,7 +48,10 @@
 <body onload="update_search_results_div(this.value, {{ products }})">
 
   <form action="{% url 'search_result' %}" method="get">
-    <input name="query" type="text" id="search_query" placeholder="Search here.." oninput="update_search_results_div(this.value, {{ products }})" onclick="update_search_results_div(this.value, {{ products }})">
+    <input name="query" type="text" id="search_query" placeholder="Search here.."
+           text-align= 'center'
+           oninput="update_search_results_div(this.value, {{ products }})"
+           onclick="update_search_results_div(this.value, {{ products }})">
   </form>
 
   <div id='proposed_results'>

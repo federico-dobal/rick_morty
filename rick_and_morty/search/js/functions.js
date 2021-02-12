@@ -17,10 +17,22 @@ function update_search_results_div(value, products) {
               html += '<a href="' + product.image + '"rel="nofollow noopener noreferrer" target="_blank">'
                 html += '<h2>' + product.name + '</h2>'
               html += '</a>'
+
+              html += '<ul>'
+      html += '<li><b>Status</b>: ' + product.status + '</li>'
+      html += '<li><b>Gender</b>: ' + product.gender + '</li>'
+      html += '<li><b>Species</b>: ' + product.species + '</li>'
+    html += '</ul>'
+
           html += '</div>'
+
+
+
         html += '</div>'
+        html += '</br>'
         html += '<div>'
           html += '<img src="'+ product.image + '" alt="'+ product.name + '">'
+
         html += '</div>'
 
       html += '</article>'
