@@ -1,7 +1,9 @@
 from python_graphql_client import GraphqlClient
+from search.config_reader.config_reader import getRickAndMortyApiUrl
 
-# Instantiate the client with an endpoint.
-client = GraphqlClient(endpoint="https://rickandmortyapi.com/graphql")
+
+# Instantiate the client with an endpoint obtained from configuration file.
+client = GraphqlClient(endpoint=getRickAndMortyApiUrl())
 
 # Create the query string required for the request.
 all_characters_query = """
@@ -19,6 +21,10 @@ all_characters_query = """
 """
 
 def execute_search_all():
+    """
+        Searches all the charactesr from GraphQL API.
+        It gets name, image, status, gender and species
+    """
     # Synchronous request
     data = client.execute(query=all_characters_query)
 

@@ -3,7 +3,7 @@
 */
 function update_search_results_div(value, products) {
 
-  let html = '<ul><h1>Search Results</h1>';
+  let html = '<ul>';
 
   for (product of products) {
 
@@ -23,12 +23,14 @@ function update_search_results_div(value, products) {
       html += '</div>'
       html += '</br>'
       html += '<div>'
-      html += '<img src="'+ product.image + '" alt="'+ product.name + '">'
+      html += '<img src="'+ product.image + '" alt="' + product.name + '">'
       html += '</div>'
       html += '</article>'
     }
 
   }
+
+  html = '</ul>';
 
   document.getElementById("proposed_results").innerHTML =  html;
 }
