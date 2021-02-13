@@ -16,8 +16,8 @@ It includes following features:
 
 In order to set up the project the commands below should be executed:
 
-       $ virtualenv venv_upload
-       $ source venv_upload/bin/activate
+       $ virtualenv venv_rick_morty
+       $ source venv_rick_morty/bin/activate
        $ pip install -r requirements.txt
 
 ## How to start the WebApp?       
