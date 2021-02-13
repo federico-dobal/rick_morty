@@ -2,6 +2,8 @@
 
 This is a light WebApp to search characters from Rick and Morty GraphQL API(https://rickandmortyapi.com/graphql)
 
+## Features
+
 It includes following features:
 
 * List all characters
@@ -25,4 +27,4 @@ Simply by executing:
        $ python manage.py runserver  
 
 ## How to access the service?
-Open the browser on ip 127.0.0.1 and port 8000(http://127.0.0.1:8000/)
+Open the browser on ip 127.0.0.1 or localhost and port 8000(http://127.0.0.1:8000/ or http://localhost:8000/)
