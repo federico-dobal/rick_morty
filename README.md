@@ -2,6 +2,14 @@
 
 This is a light WebApp to search characters from Rick and Morty GraphQL API(https://rickandmortyapi.com/graphql)
 
+It includes following features:
+
+* List all characters
+* Search partial characters names
+* Search box with partial character names matching includes scroll bar
+* The user can start the search from scratch by removing all the characters on the box
+
+
 ## Project set up
 
 In order to set up the project the commands below should be executed:
@@ -17,6 +25,4 @@ Simply by executing:
        $ python manage.py runserver  
 
 ## How to access the service?
-Open the browser on this URL:
-
-       http://127.0.0.1:8000/
+Open the browser on ip 127.0.0.1 and port 8000(http://127.0.0.1:8000/)
