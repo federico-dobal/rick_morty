@@ -10,9 +10,7 @@ def search(request):
     """
 
     api_access = ApiAccess(getRickAndMortyApiUrl())
-
-    results = api_access.execute_search_all()
-
-    params = {'products': results, 'status': 'Not found' if len(results) == 0 else None}
+    
+    params = {'products': api_access.execute_search_all()}
 
     return render(request, 'search.html', params)

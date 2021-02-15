@@ -32,7 +32,5 @@ function update_search_results_div(value, products) {
 
   html += '</ul>';
 
-  console.log(html);
-
   document.getElementById("proposed_results").innerHTML =  html;
 }
