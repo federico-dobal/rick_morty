@@ -1,0 +1,22 @@
+body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(255,255,255,.7), rgba(255,255,255,.7)), url("https://www.freepnglogos.com/uploads/rick-and-morty-png/rick-and-morty-portal-shoes-white-clothing-zavvi-23.png");
+  background-repeat: repeat;
+}
+
+input {
+  background: rgb(240,172,158);
+  color: black;
+  width: 35%;
+}
+
+/* Search box autocomplete set up */
+.ui-autocomplete {
+  max-height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+* html .ui-autocomplete {
+  height: 200px;
+}

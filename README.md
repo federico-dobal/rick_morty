@@ -28,3 +28,9 @@ Simply by executing:
 
 ## How to access the service?
 Open the browser on ip 127.0.0.1 or localhost and port 8000(http://127.0.0.1:8000/ or http://localhost:8000/)
+
+## How to execute Python tests?       
+Test can be executed by the following commands
+
+       $ cd rick_and_morty
+       $ python manage.py test 
